@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+
+  <title>PWA</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fafafa">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="apple-touch-icon" href="icon.png">
+
+
+  <!-- Place favicon.ico in the root directory -->
+
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+
+<!--  &lt;!&ndash; Manifest JSON &ndash;&gt;-->
+<!--  <link rel="manifest" href="webmanifest.json">-->
+
+<!--  &lt;!&ndash; SW registration &ndash;&gt;-->
+<!--  <script>-->
+<!--    if ("serviceWorker" in navigator) {-->
+<!--      navigator.serviceWorker.register('sw.js')-->
+<!--              .then(registration => {-->
+<!--                console.log("SW Registered! Scope is: ", registration.scope);-->
+<!--              })-->
+<!--              .catch(error => {-->
+<!--                console.log("SW Not Registered! Error: ", error);-->
+<!--              });-->
+<!--    } else {-->
+<!--      console.log("Server Worker not supported!");-->
+<!--    }-->
+<!--  </script>-->
+
+<!--  <script src="sw.js"></script>-->
+
+<!--  <meta http-equiv="refresh" content="0; url=/app/loader.html">-->
+<!--  <script type="text/javascript">-->
+<!--    window.location.href = "/app/loader.html";-->
+<!--  </script>-->
+</head>
+<body>
+
+  <main>
+    <div onclick="app.loadPage('loader.html')">Go to home</div>
+  </main>
+
+</body>
+</html>

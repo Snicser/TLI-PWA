@@ -1,0 +1,423 @@
+<main>
+  <style>
+    #r-2 .hidden span {
+      opacity: 0.05;
+      transition: opacity 0.25s ease-in-out;
+      -moz-transition: opacity 0.25s ease-in-out;
+      -webkit-transition: opacity 0.25s ease-in-out;
+    }
+    #r-2 {
+      user-select: none;
+      -moz-user-select: -moz-none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+    }
+    .speedomitor {
+      position: relative;
+      top: 38%;
+      margin-right: 8px;
+    }
+    .strategy-title {
+      height: 82px;
+      overflow-y: hidden;
+    }
+    input,
+    button,
+    submit {
+      border: none;
+    }
+  </style>
+
+  <!-- Section 2 : Strategy, The strategy should go here. -->
+  <div class="strategy-box">
+    <span id="strategy-box-content" data-content-id="">
+      <!-- CONTENT HERE -->
+      <header>
+        <div class="d-flex flex-row-reverse header-bar">
+          <div class="mr-auto p-3">
+            <i
+              onclick="app.loadPage('../app/home.html')"
+              class="fas fa-arrow-left invert button"
+            ></i>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section>
+          <div class="container">
+            <div id="r-2">
+              <h3 class="text-center pt-3 pb-3 welcome-text strategy-title">
+                <span class="title">Strategy T2</span>
+              </h3>
+              <div class="space-line-horizontal line mb-2"></div>
+
+              <div class="info"></div>
+              <!-- <div class="title"></div> -->
+              <div class="content"></div>
+
+              <div class="space-line-horizontal line mb-2"></div>
+
+              <div class="footer">
+                <form>
+                  <div class="container">
+                    <div class="d-flex flex-row justify-content-between">
+                      <!-- Settings -->
+                      <!-- Show, hide, random -->
+                      <div class="mode d-flex flex-column my-2">
+                        <div class="item my-1">
+                          <input
+                            type="checkbox"
+                            name="playMode"
+                            value="hide"
+                          /><i
+                            class="fa fa-eye-slash mx-2 button"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
+                        <div class="item my-1">
+                          <input
+                            type="checkbox"
+                            name="playMode"
+                            value="show"
+                          /><i
+                            class="fa fa-eye mx-2 button"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
+                        <div class="item my-1">
+                          <input
+                            type="checkbox"
+                            name="playMode"
+                            value="random"
+                          /><i
+                            class="fa fa-random mx-2 button"
+                            aria-hidden="true"
+                          ></i>
+                        </div>
+                      </div>
+                      <!-- Speed slider -->
+                      <div class="speed-slider d-flex justify-content-center">
+                        <div class="item d-flex flex-row">
+                          <i
+                            class="fas fa-tachometer-alt button speedomitor"
+                          ></i>
+                          <input
+                            name="playSpeed"
+                            type="range"
+                            value=""
+                            min="250"
+                            max="10000"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between my-2">
+                    <div class="i_know_kungfu">
+                      <button class="login-button">Got it</button>
+                    </div>
+                    <div class="i_dont_know_kungfu">
+                      <button class="login-button">Still clueless</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </span>
+  </div>
+
+  <!-- Section 3 : Placeholder text -->
+  <section>
+    <div class="container">
+      <!-- <p class="text-center py-2">Er kon verbinding gemaakt worden met de server</p> -->
+    </div>
+  </section>
+</main>
+
+<script>
+  window.strategy = {
+    info: {},
+    content: {},
+    playlist: {},
+    playlist_oks: {},
+    playlist_not_oks: {},
+
+    playModeSelected: "hide",
+    playModeCurrent: "hide",
+    playSpeed: 2000,
+    timingHandle: null,
+
+    randomInt: function (min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    },
+
+    randomValue: function (obj) {
+      var keys = Object.values(obj);
+      return obj[this.randomInt(0, keys.length)];
+    },
+
+    shuffle: function (array) {
+      console.log("shuffle()");
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    },
+
+    unload: function () {
+      console.log("unload()");
+      try {
+        database.set("settings." + strategy.info.fk_strategy, {
+          playSpeed: strategy.playSpeed,
+          playModeSelected: strategy.playModeSelected,
+        });
+        database.set("settings.content." + strategy.info.id, {
+          playlist_oks: {},
+          playlist_not_oks: {},
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    load: function (contentId) {
+      console.log("load()");
+      try {
+        // Get the content from the database
+        var tmp = {};
+        tmp = localStorage.getItem(contentId);
+        console.log(`strategy.load.tmp -> ${tmp}`);
+        console.log(`strategy.load.contentId -> ${contentId}`);
+        tmp = JSON.parse(tmp);
+        strategy.content = JSON.parse(tmp.content);
+
+        console.log(strategy.content);
+        strategy.info = tmp;
+        delete strategy.info.content;
+
+        // Get the last used settings for the strategy as well as the specific content from the database
+        var settings = {};
+        var settings_content = {};
+        // settings = database.get('settings.' +strategy.info.fk_strategy);
+        settings = {
+          playSpeed: "3041",
+          playModeSelected: "random",
+        };
+        settings_content = {
+          playlist_oks: {},
+          playlist_not_oks: {},
+        };
+        if (settings) {
+          strategy.playSpeed = settings.playSpeed;
+          strategy.playModeSelected = settings.playModeSelected;
+          strategy.playlist_oks = settings_content.playlist_oks;
+          strategy.playlist_not_oks = settings_content.playlist_not_oks;
+        }
+
+        // Set the value for the inputs for the playSpeed slider and playMode radio
+        strategy.setSpeed(strategy.playSpeed);
+        strategy.setMode(strategy.playModeSelected);
+
+        // Install a listener when the slider value changes; the event 'input' does not need a blur
+        document
+          .querySelector('input[name="playSpeed"]')
+          .addEventListener("input", (e) => {
+            strategy.setSpeed(e.srcElement.value);
+          });
+
+        // Install a listener when the radio value changes; for a radio input this needs to be on each value
+        document.querySelectorAll('input[name="playMode"]').forEach((el) => {
+          el.addEventListener("change", (e) => {
+            strategy.setMode(e.srcElement.value);
+          });
+        });
+
+        // Install a listener to the click event
+        document
+          .querySelector("#r-2 .content")
+          .addEventListener("click", () => {
+            strategy.click();
+          });
+
+        this.plan();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    setSpeed: function (newSpeed) {
+      try {
+        newSpeed = Number(newSpeed);
+        let el = document.querySelector('input[name="playSpeed"]');
+        if (newSpeed >= el.min && newSpeed <= el.max) {
+          console.log(`setSpeed(${newSpeed})`);
+          el.value = newSpeed;
+          strategy.playSpeed = newSpeed;
+
+          // In case we are playing, do a click so we proceed (and the timing adjustment is updated straightaway)
+          if (strategy.timingHandle) {
+            //					strategy.click();
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    setMode: function (newMode) {
+      try {
+        var values = [];
+        document.querySelectorAll('input[name="playMode"]').forEach((e) => {
+          values[values.length++] = e.value;
+        });
+        if (values.includes(newMode)) {
+          console.log(`setMode(${newMode})`);
+          document.querySelectorAll('input[name="playMode"]').forEach((e) => {
+            e.checked = false;
+          });
+          document.querySelector(
+            `input[name="playMode"][value="${newMode}"]`
+          ).checked = true;
+          strategy.playModeSelected = newMode;
+          // In case the user decides a specific value, update rightaway
+          if (["show", "hide"].includes(newMode)) {
+            strategy.playModeCurrent = newMode;
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    plan: function () {
+      console.log("plan()");
+      try {
+        strategy.playlist = Object.keys(strategy.content);
+        // Todo: group them based on the user's earlier responses, then shuffle the groups, and put them all back into the playlist
+        // ...
+        strategy.shuffle(strategy.playlist);
+        strategy.play();
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    play: function () {
+      console.log("play()");
+      try {
+        if (strategy.playlist.length == 0) {
+          strategy.plan();
+        } else {
+          if (strategy.playModeSelected == "random") {
+            // Decide the playing mode: showing one by one, or hiding instead
+            strategy.playModeCurrent = strategy.randomValue(["show", "hide"]);
+            console.log("random: " + strategy.playModeCurrent);
+          } else {
+            strategy.playModeCurrent = strategy.playModeSelected;
+          }
+          console.log(strategy.playModeCurrent);
+
+          // Load the title and values
+          var html = "";
+          var cnt = 0;
+          console.log(strategy);
+          var el = strategy.content[strategy.playlist.shift()];
+          el.list.forEach((el) => {
+            html +=
+              '<li class="element' +
+              (strategy.playModeCurrent == "show" ? " hidden" : "") +
+              '" data-cnt="' +
+              cnt +
+              '"><span>' +
+              el +
+              "</span></li>";
+            cnt++;
+          });
+          html = "<ul>" + html + "</ul>";
+
+          document.querySelector("#r-2 .title").innerText = el.title;
+          document.querySelector("#r-2 .content").innerHTML = html;
+
+          // Start the action
+          strategy.timingHandle = window.setTimeout(
+            strategy.action,
+            strategy.playSpeed
+          );
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    action: function () {
+      console.log("action()");
+      try {
+        // Grab a list of the items we still have to do, depending on the mode
+        // Example: If we're hiding all items, get those that aren't hidden yet, and vice versa
+        if (strategy.playModeCurrent == "show") {
+          var c = document.querySelectorAll("#r-2 .content li.hidden");
+        } else {
+          var c = document.querySelectorAll("#r-2 .content li:not(.hidden)");
+        }
+
+        if (c.length > 0) {
+          var elNo = c[strategy.randomInt(0, c.length - 1)].dataset.cnt;
+          var el = document.querySelector(
+            '#r-2 .content li[data-cnt="' + elNo + '"]'
+          );
+          if (strategy.playModeCurrent == "show") {
+            el.classList.remove("hidden");
+          } else {
+            el.classList.add("hidden");
+          }
+
+          strategy.timingHandle = window.setTimeout(
+            strategy.action,
+            strategy.playSpeed
+          );
+        } else {
+          strategy.timingHandle = window.setTimeout(
+            strategy.play,
+            strategy.playSpeed * 1.5
+          );
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    click: function () {
+      console.log("click()");
+      try {
+        // Cancel the timeout if it's set
+        if (strategy.timingHandle) {
+          window.clearTimeout(strategy.timingHandle);
+        }
+
+        // Grab a list of the items we still have to do, depending on the mode
+        if (strategy.playModeCurrent == "show") {
+          var c = document.querySelectorAll("#r-2 .content li.hidden");
+        } else {
+          var c = document.querySelectorAll("#r-2 .content li:not(.hidden)");
+        }
+
+        if (c.length == 0) {
+          // There are no items left to deal with, so we were going straight to play()
+          strategy.play();
+        } else {
+          // There are some items left to deal with, so go straight to the next action()
+          strategy.action();
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  };
+
+  strategy.load(document.querySelector("#app").getAttribute("contentId"));
+</script>

@@ -1,0 +1,65 @@
+<header>
+  <div class="d-flex flex-row-reverse header-bar">
+    <div class="mr-auto p-3">
+      <i
+        onclick="app.loadPage('profile.html')"
+        class="fas fa-arrow-left invert button"
+      ></i>
+    </div>
+  </div>
+</header>
+
+<!-- Section 1 : Icon, App name, version, Webserver -->
+<section>
+  <div class="container text-center">
+    <img class="app-icon my-2" id="app-icon" src="" alt="Logo" />
+    <h3 class="pt-1 welcome-text"><span id="app-name"></span></h3>
+    <h5 class="pt-1 welcome-text-secondary"><span id="app-version"></span></h5>
+    <h5 class="pt-1 welcome-text-secondary">
+      Server: <span id="app-server">EU-1</span>
+    </h5>
+  </div>
+</section>
+
+<!-- Information section -->
+<main>
+  <section>
+    <div class="container">
+      <div class="d-flex flex-column">
+        <div class="list-box" style="height: 50vh">
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div>Gebruikersvoorwaarden & Cookies</div>
+            </div>
+          </div>
+
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div>AVG</div>
+            </div>
+          </div>
+
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div>License</div>
+            </div>
+          </div>
+
+          <div class="rounded my-1 mx-1">
+            <div
+              class="d-flex list-item justify-content-between"
+              style="overflow: auto; height: auto"
+            >
+              <div>
+                <span>Gemaakt door:</span>
+                <ul class="m-0 pl-custom-1-25rem">
+                  <span id="app-developers"></span>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

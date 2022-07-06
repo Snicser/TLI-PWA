@@ -1,0 +1,75 @@
+<header>
+  <div class="d-flex flex-row-reverse header-bar">
+    <div class="mr-auto p-3">
+      <i
+        onclick="app.loadPage('search.html'); QRCode.stopScanner()"
+        class="fas fa-arrow-left invert button"
+      ></i>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container text-center mt-3">
+    <!-- DO NOT CHANGE THIS DIV ID OR THE ID OTHERWISE YOUR WILL BREAK THE QR CODE SCANNER -->
+    <div class="my-2" id="insert-reader-after">
+      <span id="qr-status-text"></span>
+    </div>
+
+    <div class="restart-button" onclick="QRCode.restartScanner()">
+      <i class="fas fa-undo-alt"></i>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="my-3">
+        <div class="container">
+          <form
+            class="form-inline justify-content-center my-2 box-shadow-light-and-dark-mode-qr-code-scan-input-field"
+            action="/action_page.php"
+          >
+            <input
+              class="form-control add-group-code-input"
+              type="text"
+              id="group-id"
+              name="group-id"
+              placeholder="ID"
+            />
+            <input
+              class="form-control add-group-code-input"
+              type="text"
+              id="group-code"
+              name="group-code"
+              placeholder="Code"
+            />
+
+            <div class="d-flex justify-content-center">
+              <div
+                onclick="QRCode.submitCode(document.querySelector('#group-id').value, document.querySelector('#group-code').value)"
+                id="btnSubmit"
+                class="login-button mb-3"
+              >
+                Doorgaan
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="success-checkmark">
+    <div class="check-icon">
+      <span class="icon-line line-tip"></span>
+      <span class="icon-line line-long"></span>
+      <div class="icon-circle"></div>
+      <div class="icon-fix"></div>
+    </div>
+  </div>
+</main>
+
+<!-- When the page gets done loading start scanning for a QR Code -->
+<script>
+  (function () {
+    QRCode.startScanning();
+  })();
+</script>

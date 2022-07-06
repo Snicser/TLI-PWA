@@ -1,0 +1,44 @@
+<header>
+  <div class="d-flex flex-row-reverse header-bar">
+    <div class="mr-auto p-3">
+      <i
+        onclick="app.loadPage('profile.html')"
+        class="fas fa-arrow-left invert button"
+      ></i>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Section 0 : Internet -->
+  <section>
+    <div class="internet-noti">No internet connection</div>
+  </section>
+
+  <div class="container">
+    <h3 class="text-center pt-3 pb-3 welcome-text">Statistieken</h3>
+    <div class="space-line-horizontal line mb-2"></div>
+  </div>
+
+  <!-- Information section -->
+  <section class="container my-2">
+    <div class="d-flex flex-column">
+      <div class="overflow-hidden list-box" style="height: 50vh">
+        <!-- Flex item -->
+        <div class="rounded my-1 mx-1">
+          <div class="list-info" style="padding: 5px">
+            <div class="flex-container info-box-content text-left">
+              <span class="p-2" id="global-user-statistics"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    user.getGlobalUserStatistics();
+  })();
+</script>

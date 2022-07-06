@@ -1,0 +1,23 @@
+{
+  "name": "Leerstrategieën",
+  "short_name": "TLI",
+  "description": "Een leerstrategie app.",
+  "icons": [
+    {
+      "src": "apps-tli-cloud.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "apps-tli-cloud.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "app/loader.html",
+  "background_color": "#3a3b3c",
+  "theme_color": "#71B3E2",
+  "display": "standalone",
+  "orientation": "portrait"
+}

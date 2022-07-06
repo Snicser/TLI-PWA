@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    <Flavio Schoute> -- <Developer> -- <SOCIAL MEDIA>
+    <Reinout Wijnholds> -- <Developer> -- <SOCIAL MEDIA>
+    <Herbert van Vliet> -- <Developer> -- <SOCIAL MEDIA>
+
+# THANKS
+
+    <Maarten Griffioen>
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    Apache Server Configs, Normalize.css

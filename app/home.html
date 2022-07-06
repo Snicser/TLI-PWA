@@ -1,0 +1,145 @@
+<!-- Section 0 : Internet -->
+<section>
+  <div class="internet-noti">No internet connection</div>
+</section>
+
+<!-- <section>
+    <button onclick="testGet()">Test get</button>
+  </section> -->
+
+<header>
+  <div class="d-flex flex-row-reverse header-bar">
+    <div onclick="app.loadPage('profile.html')" class="p-3">
+      <i class="invert button fas fa-user-alt"></i>
+    </div>
+  </div>
+</header>
+<main>
+  <!-- Section 1 : Welcome -->
+  <section>
+    <div class="container">
+      <h3 class="text-center pt-3 welcome-text">
+        Welkom <span class="home-username"></span>
+      </h3>
+      <h5 class="text-center pb-3 welcome-text-secondary">
+        Wat wil je doen vandaag?
+      </h5>
+    </div>
+  </section>
+
+  <!-- Section 2 : Content -->
+  <section>
+    <div class="container">
+      <div class="d-flex flex-column">
+        <div class="list-box">
+          <!-- <div class="rounded my-1 mx-1">
+            <div onclick="app.loadPage('../strategy/info.html')" class="d-flex list-item justify-content-between">
+              <div><span class="subject">AK - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">93%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">AK - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">90%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">FR - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">36%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">FR - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">12%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">DE - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">90%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">DE - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">83%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">DE - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">15%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">RU - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">52%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">RU - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">35%</span></div>
+            </div>
+          </div>
+          <div class="rounded my-1 mx-1">
+            <div class="d-flex list-item justify-content-between">
+              <div><span class="subject">RU - H1X</span></div>
+              <div><div class="space-line rounded line"></div></div>
+              <div><span class="complete-percentage">25%</span></div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 : Buttons -->
+  <section>
+    <div class="container">
+      <div class="d-flex">
+        <div
+          onclick="app.loadPage('search.html')"
+          class="button button-style my-1 px-1 py-2 mr-auto"
+        >
+          <i class="fas fa-plus"></i>
+        </div>
+        <div class="px-2 pt-3"><span class="content-noti"></span></div>
+        <div onclick="content.refreshButton()" class="button my-1 px-1 py-2">
+          <i class="fas fa-sync-alt button"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 : Placeholder text -->
+  <section>
+    <div class="container">
+      <!-- <p class="text-center py-2">Er kon verbinding gemaakt worden met de server</p> -->
+    </div>
+  </section>
+</main>
+
+<script>
+  (function () {
+    //Change firstname on homepage
+    let profileInfo = JSON.parse(database.get("profile"));
+    console.log(profileInfo)
+    document.querySelector(".home-username").innerHTML = profileInfo.firstname;
+
+    app.loadListBox();
+  })();
+</script>

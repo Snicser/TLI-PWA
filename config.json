@@ -1,0 +1,17 @@
+{
+    "app-name": "TLI PWA",
+    "app-version": "1.0.0",
+    "app-icon": "../images/learning-strategies-icon-generic.png",
+    "app-tos": "",
+    "app-developers": [
+        "Herbert de Perbert" , "Reinout Wijnholds", "Flavio Schoute"
+    ],
+    "libraries": [
+        {
+            "name": "Bootstrap",
+            "license": "MIT",
+            "reference": ""
+        }
+    ]
+}
+

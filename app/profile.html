@@ -1,0 +1,171 @@
+<header onload="">
+  <div class="d-flex flex-row-reverse header-bar">
+    <!-- <div onclick="app.loadPage('home.html')" class="p-3"><i class="invert button fas fa-times"></i></div> -->
+    <div class="mr-auto p-3">
+      <i
+        onclick="app.loadPage('home.html')"
+        class="fas fa-arrow-left invert button"
+      ></i>
+    </div>
+  </div>
+</header>
+
+<!-- Settigns section -->
+<section>
+  <div class="container">
+    <h3 class="text-center pt-3 pb-3 welcome-text">Settings</h3>
+    <h5 class="text-center pb-3 welcome-text-secondary">Uiterlijk</h5>
+    <div class="space-line-horizontal line"></div>
+
+    <!-- Appearance info -->
+    <div class="d-flex flex-row">
+      <div class="p-2 user-information-title">
+        <div class="d-flex flex-column">
+          <div class="p-2">Darkmode:</div>
+        </div>
+      </div>
+      <div class="p-2 user-information">
+        <div class="d-flex flex-column">
+          <div class="switch-box">
+            <label class="switch">
+              <input
+                class="slider-darkmode"
+                onclick="app.changeDarkmode()"
+                type="checkbox"
+                checked
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color picker -->
+    <div class="d-flex flex-row">
+      <div class="p-2 user-information-title">
+        <div class="d-flex flex-column">
+          <div class="p-2">Style color:</div>
+        </div>
+      </div>
+      <div class="p-2 user-information">
+        <div class="d-flex flex-column">
+          <div>
+            <input
+              class="color-picker"
+              onchange="user.changeColor()"
+              type="color"
+              id="head"
+              name="head"
+              value="#e66465"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User info -->
+    <h5 class="text-center pb-3 pt-3 welcome-text-secondary">
+      Gebruikerinformatie
+    </h5>
+    <div class="space-line-horizontal line"></div>
+    <div class="d-flex flex-row">
+      <div class="p-2">
+        <div class="d-flex flex-column">
+          <div class="pl-2 pt-2 user-information-title">Voornaam</div>
+          <div class="pl-2 user-information">
+            <span class="user-firstname">Reinout</span>
+          </div>
+          <div class="pl-2 pt-2 user-information-title">Achternaam</div>
+          <div class="pl-2 user-information">
+            <span class="user-surname">Wijnholds</span>
+          </div>
+          <div class="pl-2 pt-2 user-information-title">E-mail</div>
+          <div class="pl-2 user-information">
+            <span class="user-email">ReinoutWijnholds2002@gmail.com</span>
+          </div>
+          <div class="pl-2 pt-2 user-information-title">Country</div>
+          <div class="pl-2 user-information">
+            <span class="user-country">--</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-2 user-information">
+        <div class="d-flex flex-column"></div>
+      </div>
+    </div>
+
+    <!-- User stats -->
+    <h5 class="text-center pb-3 pt-3 welcome-text-secondary">
+      Gebruikers statistieken
+    </h5>
+    <div class="space-line-horizontal line"></div>
+    <div class="d-flex flex-row">
+      <div class="p-2">
+        <div class="d-flex flex-column">
+          <div class="pl-2 pt-2 user-information-title">Statistieken</div>
+          <div
+            onclick="app.loadPage('statistics.html')"
+            class="pl-2 user-information"
+          >
+            <span class="user-firstname">Laad de statistieken zien</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-2 user-information">
+        <div class="d-flex flex-column"></div>
+      </div>
+    </div>
+
+    <!-- About page -->
+    <h5 class="text-center pb-3 pt-3 welcome-text-secondary">Over ons</h5>
+    <div class="space-line-horizontal line"></div>
+    <div class="d-flex flex-row">
+      <div class="p-2">
+        <div class="d-flex flex-column">
+          <div class="pl-2 pt-2 user-information-title">Over de app</div>
+          <div
+            onclick="app.loadPage('about.html')"
+            class="pl-2 user-information"
+          >
+            <span class="user-firstname">Ga naar de over ons pagina</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-2 user-information">
+        <div class="d-flex flex-column"></div>
+      </div>
+    </div>
+
+    <!-- Login INFO -->
+    <footer>
+      <p class="logout my-2" onclick="app.logout()">Uitloggen</p>
+    </footer>
+  </div>
+</section>
+
+<!-- Updates the user profile, when the user goes to his/her profile page -->
+<script>
+  (function () {
+    // Replace data with current user information
+    document.querySelector(".user-firstname").innerHTML =
+      user.profile.firstname;
+    document.querySelector(".user-surname").innerHTML = user.profile.lastname;
+    document.querySelector(".user-email").innerHTML = user.profile.email;
+    document.querySelector(".user-country").innerHTML = user.profile.country;
+
+    // Gets the <body> element
+    let bodyClass = document.querySelector("body").classList;
+
+    // Darkmode slider state update
+    if (!bodyClass.contains("dark")) {
+      document.querySelector(".slider-darkmode").checked = false;
+    }
+
+    // Set the color correctly
+    let colorPicker = document.querySelector(".color-picker");
+    colorPicker.value = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--main-bg-color");
+  })();
+</script>

@@ -1,0 +1,28 @@
+
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="login-box">
+        <div class="container">
+          <h2 class="text-center login-title-bye">Tot ziens!</h2>
+          <div class="space-line-horizontal mb-3"></div>
+          <form action="/action_page.php">
+            <h2 class="login-title">Gebruikersnaam</h2>
+          <div class="d-flex justify-content-center">
+            <input class="login-input" type="text" id="username" name="username" placeholder="...">
+          </div>
+            <h2 class="login-title">Wachtwoord</h2>
+          <div class="d-flex justify-content-center">
+            <input class="login-input" type="password" id="password" name="password" placeholder="...">
+          </div>
+          <div class="d-flex justify-content-center">
+            <div onclick="app.login(document.querySelector('#username').value, document.querySelector('#password').value)" id="btnSubmit" class="login-button">Aanmelden</div>
+          </div>
+        </form>
+        <div class="text-center noti"><span class="login-message"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    
+  </footer>

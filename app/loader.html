@@ -1,0 +1,95 @@
+<html lang="nl">
+<head>
+    <title>TLI Learning</title>
+
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#71B3E2">
+
+    <meta name="keywords" content="strategy, learning, school, methods of learning, rtti">
+    <meta name="author" content="Reinout Wijnholds, Flavio Schoute, Herbert van Vliet">
+    <meta name="description" content="Dit is een leer strategie app">
+
+
+    <meta property="og:title" content="TLI Learning">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../apps-tli-cloud.png.png">
+
+    <!-- MANIFEST JSON -->
+    <link rel="manifest" href="../webmanifest.json">
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register('../sw.js')
+                .then(registration => {
+                    console.log("SW Registered! Scope is: ", registration.scope);
+                })
+                .catch(error => {
+                    console.log("SW Not Registered! Error: ", error);
+                });
+        } else {
+            console.log("Server Worker not supported!");
+        }
+    </script>
+
+    <script src="../sw.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+    <!-- LOGIN -->
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+
+    <!-- PROFILE -->
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+
+    <!-- SYNC -->
+    <link rel="stylesheet" type="text/css" href="../css/search.css">
+
+    <!-- INFO PAGE -->
+    <link rel="stylesheet" type="text/css" href="../css/info.css">
+
+    <!-- DEMO PAGE -->
+    <link rel="stylesheet" type="text/css" href="../css/demo.css">
+
+    <!-- DEMO PAGE -->
+    <link rel="stylesheet" type="text/css" href="../css/animations.css">
+
+    <!-- CONTENT -->
+    <script src="../js/install.js" defer></script>
+    <script src="../js/content.js" defer></script>
+    <script src="../js/user.js" defer></script>
+    <script src="../js/strategy.js" defer></script>
+    <script src="../js/local-database.js" defer></script>
+    <script src="../js/modal.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/statistics.js" defer></script>
+    <script src="../js/html5-qrcode.min.js" defer></script>
+    <script src="../js/search.js" defer></script>
+
+    <!-- DEBUG -->
+    <script src="../js/debug.js" defer></script>
+
+    <noscript><p>You must enable JavaScript!</p></noscript>
+
+<body onload="app.initialize()" class="dark">
+<div id="app">
+
+</div>
+
+<script src="../js/app.js" defer></script>
+</body>
+</html>
